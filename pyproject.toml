@@ -44,3 +44,8 @@ torchaudio = [
     { index = "pypi", marker = "sys_platform == 'darwin'" },
     { index = "pytorch-cpu", marker = "sys_platform == 'linux' and platform_machine != 'x86_64'" },
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.17",
+]

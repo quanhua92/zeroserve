@@ -16,6 +16,34 @@ Currently in **Phase 1**: Setting up the core Transformer logic.
 
 Check [ROADMAP.md](./ROADMAP.md) for the full checklist.
 
+## 🛠 Getting Started
+
+### Prerequisites
+- **Python** ≥ 3.10
+- **[uv](https://docs.astral.sh/uv/)** — fast Python package manager
+
+### Install
+```bash
+git clone git@github.com:quanhua92/zeroserve.git zeroserve && cd zeroserve
+uv sync                      # resolves + installs the correct PyTorch wheels for your platform
+```
+
+`uv sync` automatically picks the right PyTorch build:
+| Platform | Wheels |
+|---|---|
+| Linux x86_64 / Windows | CUDA 12.4 (`download.pytorch.org/whl/cu124`) |
+| macOS (Intel & Apple Silicon) | PyPI (native MPS support) |
+| Linux aarch64 / other | CPU-only (`download.pytorch.org/whl/cpu`) |
+
+### Configure Git Hooks (one-time, per clone)
+A `pre-commit` hook in [`githooks/`](./githooks) runs `ruff check --fix` and `ruff format` on staged Python files before each commit. Point Git at it once after cloning:
+
+```bash
+git config core.hooksPath githooks
+```
+
+To skip the hook for a single commit: `git commit --no-verify`.
+
 ## 📂 Project Structure
 
 ```text
