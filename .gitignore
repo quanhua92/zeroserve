@@ -60,7 +60,7 @@ env.bak/
 venv.bak/
 
 # UV / PDM / Poetry
-uv.lock
+# Note: uv.lock IS committed for reproducible cross-platform installs
 pdm.lock
 .pdm-python
 .pdm-build/
