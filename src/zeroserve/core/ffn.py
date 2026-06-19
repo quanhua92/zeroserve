@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 
 
@@ -8,5 +9,5 @@ class FFN(nn.Module):
         self.w2 = nn.Linear(hidden_dim, dim, bias=True)
         self.act = nn.ReLU()
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.w2(self.act(self.w1(x)))
