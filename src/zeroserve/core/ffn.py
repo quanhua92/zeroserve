@@ -7,7 +7,7 @@ class FFN(nn.Module):
         super().__init__()
         self.w1 = nn.Linear(dim, hidden_dim, bias=True)
         self.w2 = nn.Linear(hidden_dim, dim, bias=True)
-        self.act = nn.ReLU()
+        self.act = nn.GELU()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.w2(self.act(self.w1(x)))

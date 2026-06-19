@@ -16,7 +16,7 @@ def test_ffn_forward(dtype):
     input_tensor = torch.randn(batch_size, seq_len, dim, dtype=dtype)
 
     # Reference
-    ref = F.relu(F.linear(input_tensor, ffn.w1.weight, ffn.w1.bias))
+    ref = F.gelu(F.linear(input_tensor, ffn.w1.weight, ffn.w1.bias))
     expected = F.linear(ref, ffn.w2.weight, ffn.w2.bias)
 
     output = ffn(input_tensor)
