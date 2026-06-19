@@ -17,7 +17,4 @@ class RMSNorm(nn.Module):
         mean_square = x.pow(2).mean(-1, keepdim=True)
         x = x * (mean_square + self.eps).rsqrt()
 
-        # downcast back to original dtype and apply weight
-        x = x.to(original_dtype) * self.weight.to(original_dtype)
-
-        return x
+        return (x * self.weight).to(original_dtype)

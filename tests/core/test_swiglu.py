@@ -17,9 +17,9 @@ def test_swiglu_forward(dtype):
 
     # Reference
     gate = F.silu(F.linear(input_tensor, swiglu.w1.weight))
-    up = F.linear(input_tensor, swiglu.w2.weight)
+    up = F.linear(input_tensor, swiglu.w3.weight)
     mixed = gate * up
-    expected = F.linear(mixed, swiglu.w3.weight)
+    expected = F.linear(mixed, swiglu.w2.weight)
 
     output = swiglu(input_tensor)
 
@@ -45,7 +45,7 @@ def test_swiglu_gate_path_used():
 
 def test_swiglu_up_path_used():
     swiglu = SwiGLU(16, 32)
-    swiglu.w2.weight.data.zero_()
+    swiglu.w3.weight.data.zero_()
 
     output = swiglu(torch.randn(2, 1, 16))
     expected = torch.zeros_like(output)
@@ -57,7 +57,7 @@ def test_swiglu_up_path_used():
 
 def test_swiglu_down_path_used():
     swiglu = SwiGLU(16, 32)
-    swiglu.w3.weight.data.zero_()
+    swiglu.w2.weight.data.zero_()
 
     output = swiglu(torch.randn(2, 1, 16))
     expected = torch.zeros_like(output)
